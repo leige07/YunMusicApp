@@ -1,3 +1,4 @@
+include ':lib_audio'
 include ':lib_webview'
 include ':lib_video'
 include ':lib_update'

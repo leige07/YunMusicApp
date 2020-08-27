@@ -1,3 +1,50 @@
 ext{
+    android = [
+            compileSdkVersion       :        29,
+            buildToolsVersion       :        "29.0.3",
+            applicationId           :        "com.test.yunmusicapp",
+            minSdkVersion           :        23,
+            targetSdkVersion        :        29,
+            versionCode             :        1,
+            versionName             :        "1.0",
+            multiDexEnabled         :        true,
+    ]
 
+    depsVersion = [
+            kotlin_stdlib_version: "1.4.0",
+            core_ktx_verison: "1.3.1",
+            appcompat_version: "1.2.0",
+            constraintlayout_version: "1.1.3",
+            recyclerview_version: "1.1.0",
+            eventbus_version       : '3.1.1',
+            greendao_version       : '3.2.2',
+            rxjava_version         : '2.2.9',
+            rxandroid_version      : '2.1.1',
+            arouterapi_version     : '1.5.0',
+            aroutercompiler_version: '1.2.2',
+            magicindicator_version : '1.5.0',
+            glide_version          : '4.9.0',
+            glidecompiler_version  : '4.9.0',
+            okhttp_version         : '3.3.0',
+            gson_version           : '2.8.0',
+    ]
+
+    depsLibs = [
+            kotlin_stdlib: "org.jetbrains.kotlin:kotlin-stdlib:${depsVersion.kotlin_stdlib_version}",
+            core_ktx: "androidx.core:core-ktx:${depsVersion.core_ktx_verison}",
+            appcompat: "androidx.appcompat:appcompat:${depsVersion.appcompat_version}",
+            constraintlayout: "androidx.constraintlayout:constraintlayout:${depsVersion.constraintlayout_version}",
+            recyclerview: "androidx.recyclerview:recyclerview:${depsVersion.recyclerview_version}",
+            eventbus       : "org.greenrobot:eventbus:${depsVersion.eventbus_version}",
+            greendao       : "org.greenrobot:greendao:${depsVersion.greendao_version}",
+            rxjava         : "io.reactivex.rxjava2:rxjava:${depsVersion.rxjava_version}",
+            rxandroid      : "io.reactivex.rxjava2:rxandroid:${depsVersion.rxandroid_version}",
+            arouterapi     : "com.alibaba:arouter-api:${depsVersion.arouterapi_version}",
+            aroutercompiler: "com.alibaba:arouter-compiler:${depsVersion.aroutercompiler_version}",
+            magicindicator : "com.github.hackware1993:MagicIndicator:${depsVersion.magicindicator_version}",
+            glide          : "com.github.bumptech.glide:glide:${depsVersion.glide_version}",
+            glidecompiler  : "com.github.bumptech.glide:compiler:${depsVersion.glidecompiler_version}",
+            okhttp         : "com.squareup.okhttp3:okhttp:${depsVersion.okhttp_version}",
+            gson           : "com.google.code.gson:gson:${depsVersion.gson_version}",
+    ]
 }

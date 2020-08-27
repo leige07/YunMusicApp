@@ -1,4 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+//引入根工程下的统一版本管理文件
+apply from: this.rootProject.file('yun.gradle')
 buildscript {
     ext.kotlin_version = "1.4.0"
     repositories {
