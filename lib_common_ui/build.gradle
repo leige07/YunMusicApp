@@ -12,8 +12,13 @@ android {
         versionCode rootProject.android.versionCode
         versionName rootProject.android.versionName
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
+        //ARouter配置
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
+            }
+        }
+
     }
 
     buildTypes {
@@ -22,6 +27,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
 
 dependencies {
@@ -29,5 +39,7 @@ dependencies {
     implementation rootProject.depsLibs.kotlin_stdlib
     implementation rootProject.depsLibs.core_ktx
     implementation rootProject.depsLibs.appcompat
+
+    api rootProject.depsLibs.magicindicator
 
 }
