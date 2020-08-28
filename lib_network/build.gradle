@@ -39,4 +39,7 @@ dependencies {
     implementation rootProject.depsLibs.kotlin_stdlib
     implementation rootProject.depsLibs.core_ktx
     implementation rootProject.depsLibs.appcompat
+
+    api rootProject.depsLibs.okhttp //okttp依赖
+    api rootProject.depsLibs.gson
 }
