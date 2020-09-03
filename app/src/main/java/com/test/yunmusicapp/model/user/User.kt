@@ -8,6 +8,6 @@ import com.test.yunmusicapp.model.BaseModel
 @description
  */
 data class User(var ecode: Int,
-                var emsg: String?,
-                var data: UserContent?): BaseModel() {
+                var emsg: String = "",
+                var data: UserContent = UserContent()): BaseModel() {
 }

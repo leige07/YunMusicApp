@@ -19,7 +19,6 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNav
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView
-import org.greenrobot.eventbus.EventBus
 
 
 class MainActivity : BaseActivity(), View.OnClickListener {
@@ -42,8 +41,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         registerBroadcastReceiver()
 //        EventBus.getDefault().register(this)
         setContentView(R.layout.activity_main)
-        initView();
-        initData();
+        initView()
+        initData()
     }
 
     private fun registerBroadcastReceiver() {
