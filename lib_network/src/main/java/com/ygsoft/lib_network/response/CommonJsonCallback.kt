@@ -4,20 +4,22 @@ import android.os.Handler
 import android.os.Looper
 import com.google.gson.Gson
 import com.ygsoft.lib_network.eception.OkHttpException
-import com.ygsoft.lib_network.listener.DisposeDataHandle
 import com.ygsoft.lib_network.listener.DisposeDataListener
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
 import org.json.JSONObject
 import java.io.IOException
+import java.lang.reflect.ParameterizedType
+import java.lang.reflect.Type
+
 
 /**
 @author by zhulei
 @time 2020/8/28 15:02
 @description 专门处理Json的回调
  */
-class CommonJsonCallback: Callback {
+open class CommonJsonCallback<T>: Callback {
 
     companion object {
         /**
@@ -35,17 +37,17 @@ class CommonJsonCallback: Callback {
         const val JSON_ERROR = -2 // the JSON relative error
         const val OTHER_ERROR = -3 // the unknow error
     }
-
-    /**
-     * 将其它线程的数据转发到UI线程
-     */
+//
+//    /**
+//     * 将其它线程的数据转发到UI线程
+//     */
     private var mDeliveryHandler: Handler? = null
-    private var mListener: DisposeDataListener? = null
-    private var mClass: Class<*>? = null
-
-    constructor(handle: DisposeDataHandle) {
-        mListener = handle.mListener
-        mClass = handle.mClass
+    private var mListener: DisposeDataListener<T>? = null
+    private var mClass: Class<T>? = null
+//
+    constructor(mClass: Class<T>, listener: DisposeDataListener<T>) {
+        mListener = listener
+        this.mClass = mClass
         mDeliveryHandler = Handler(Looper.getMainLooper())
     }
 
@@ -73,16 +75,16 @@ class CommonJsonCallback: Callback {
              * 协议确定后看这里如何修改
              */
             val result = JSONObject(responseObj)
-            if (mClass == null) {
-                mListener!!.onSuccess(result)
-            } else {
-                val obj: Any = Gson().fromJson(responseObj, mClass)
+//            if (mClass == null) {
+//                mListener!!.onSuccess(result)
+//            } else {
+                val obj: T = Gson().fromJson(responseObj, mClass)
                 if (obj != null) {
                     mListener!!.onSuccess(obj)
                 } else {
                     mListener!!.onFailure(OkHttpException(JSON_ERROR, EMPTY_MSG))
                 }
-            }
+//            }
         } catch (e: Exception) {
             mListener!!.onFailure(OkHttpException(OTHER_ERROR, e.message))
             e.printStackTrace()

@@ -6,21 +6,21 @@ package com.ygsoft.lib_network.listener
 @description
  */
 class DisposeDataHandle {
-    var mListener: DisposeDataListener? = null
-    var mClass: Class<*>? = null
-    var mSource: String? = null //文件下载路径
-
-    constructor(listener: DisposeDataListener?) {
-        mListener = listener
-    }
-
-    constructor(listener: DisposeDataListener?, clazz: Class<*>?) {
-        mListener = listener
-        mClass = clazz
-    }
-
-    constructor(listener: DisposeDataListener?, source: String?) {
-        mListener = listener
-        mSource = source
-    }
+//    var mListener: DisposeDataListener? = null
+//    var mClass: Class<*>? = null
+//    var mSource: String? = null //文件下载路径
+//
+//    constructor(listener: DisposeDataListener?) {
+//        mListener = listener
+//    }
+//
+//    constructor(listener: DisposeDataListener?, clazz: Class<*>?) {
+//        mListener = listener
+//        mClass = clazz
+//    }
+//
+//    constructor(listener: DisposeDataListener?, source: String?) {
+//        mListener = listener
+//        mSource = source
+//    }
 }

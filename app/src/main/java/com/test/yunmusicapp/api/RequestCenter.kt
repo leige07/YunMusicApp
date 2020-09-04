@@ -34,24 +34,24 @@ class RequestCenter {
          */
         var LOGIN = "https://www.wanandroid.com/article/list/0/json"
 
-
-        //根据参数发送所有post请求
-        fun getRequest(url: String, params: RequestParams, listener: DisposeDataListener, clazz: Class<*>) {
-            CommonOkHttpClient.getRequest(
-                CommonRequest.createGetRequest(url, params),
-                DisposeDataHandle(listener, clazz)
-            )
-        }
-
-        /**
-         * 用户登陆请求
-         */
-        fun login(listener: DisposeDataListener) {
-            val params = RequestParams()
-            params.put("mb", "18734924592")
-            params.put("pwd", "999999q")
-            getRequest(LOGIN, params, listener, Objects::class.java)
-        }
+//
+//        //根据参数发送所有post请求
+//        fun getRequest(url: String, params: RequestParams, listener: DisposeDataListener, clazz: Class<*>) {
+//            CommonOkHttpClient.getRequest(
+//                CommonRequest.createGetRequest(url, params),
+//                DisposeDataHandle(listener, clazz)
+//            )
+//        }
+//
+//        /**
+//         * 用户登陆请求
+//         */
+//        fun login(listener: DisposeDataListener) {
+//            val params = RequestParams()
+//            params.put("mb", "18734924592")
+//            params.put("pwd", "999999q")
+//            getRequest(LOGIN, params, listener, Objects::class.java)
+//        }
     }
 
 }

@@ -6,28 +6,27 @@ package com.ygsoft.lib_network.eception
 @description
  */
 class OkHttpException {
-    private val serialVersionUID = 1L
 
     /**
      * the server return code
      */
-    private var ecode = 0
+    private var code = 0
 
     /**
      * the server return error message
      */
-    private var emsg: Any? = null
+    private var msg: String? = null
 
-    constructor(ecode: Int, emsg: Any?) {
-        this.ecode = ecode
-        this.emsg = emsg
+    constructor(code: Int, msg: String?) {
+        this.code = code
+        this.msg = msg
     }
 
-    fun getEcode(): Int {
-        return ecode
+    fun getCode(): Int {
+        return code
     }
 
-    fun getEmsg(): Any? {
-        return emsg
+    fun getMsg(): Any? {
+        return msg
     }
 }

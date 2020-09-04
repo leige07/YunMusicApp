@@ -9,16 +9,16 @@ import android.view.View
 import android.widget.ImageView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager.widget.ViewPager
-import com.test.yunmusicapp.api.RequestCenter
 import com.test.yunmusicapp.api.TestData
 import com.test.yunmusicapp.model.CHANNEL
 import com.test.yunmusicapp.view.adapter.HomePagerAdapter
 import com.ygsoft.lib_common_ui.base.BaseActivity
 import com.ygsoft.lib_common_ui.pager_indictor.ScaleTransitionPagerTitleView
 import com.ygsoft.lib_network.CommonOkHttpClient
-import com.ygsoft.lib_network.listener.DisposeDataHandle
+import com.ygsoft.lib_network.eception.OkHttpException
 import com.ygsoft.lib_network.listener.DisposeDataListener
 import com.ygsoft.lib_network.request.CommonRequest
+import com.ygsoft.lib_network.response.CommonJsonCallback
 import net.lucode.hackware.magicindicator.MagicIndicator
 import net.lucode.hackware.magicindicator.ViewPagerHelper
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
@@ -26,9 +26,6 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNav
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView
-import okhttp3.*
-import org.json.JSONObject
-import java.io.IOException
 
 
 class MainActivity : BaseActivity(), View.OnClickListener {
@@ -60,7 +57,17 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun initData() {
+        CommonOkHttpClient.getRequest(CommonRequest.createGetRequest("http://api.androidhive.info/volley/person_object.json"),
+           CommonJsonCallback(TestData::class.java, object : DisposeDataListener<TestData>{
+               override fun onSuccess(responseObj: TestData) {
+                   Log.e("TAG", responseObj.toString())
+               }
 
+               override fun onFailure(exception: OkHttpException) {
+                   Log.e("TAG", "${exception.getCode()}  ${exception.getMsg()}")
+               }
+           })
+        )
     }
 
     private fun initView() {
