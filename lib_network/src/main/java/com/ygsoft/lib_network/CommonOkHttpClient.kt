@@ -2,6 +2,8 @@ package com.ygsoft.lib_network
 
 import com.ygsoft.lib_network.cookie.SimpleCookieJar
 import com.ygsoft.lib_network.https.HttpsUtils
+import com.ygsoft.lib_network.listener.DisposeDataHandle
+import com.ygsoft.lib_network.response.CommonJsonCallback
 import okhttp3.*
 import java.util.concurrent.TimeUnit
 
@@ -53,11 +55,11 @@ class CommonOkHttpClient {
         /**
          * 通过构造好的Request,Callback去发送请求
          */
-//        fun getRequest(request: Request, handle: DisposeDataHandle): Call {
-//            val call = mOkHttpClient!!.newCall(request)
-//            call.enqueue(CommonJsonCallback(handle))
-//            return call
-//        }
+        fun getRequest(request: Request, handle: DisposeDataHandle<TestData>): Call {
+            val call = mOkHttpClient!!.newCall(request)
+            call.enqueue(CommonJsonCallback(handle))
+            return call
+        }
 //
 //        fun postRequest(request: Request, handle: DisposeDataHandle): Call {
 //            val call = mOkHttpClient!!.newCall(request)

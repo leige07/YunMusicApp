@@ -4,6 +4,7 @@ import android.os.Handler
 import android.os.Looper
 import com.google.gson.Gson
 import com.ygsoft.lib_network.eception.OkHttpException
+import com.ygsoft.lib_network.listener.DisposeDataHandle
 import com.ygsoft.lib_network.listener.DisposeDataListener
 import okhttp3.Call
 import okhttp3.Callback
@@ -51,9 +52,15 @@ open class CommonJsonCallback<T>: Callback {
         mDeliveryHandler = Handler(Looper.getMainLooper())
     }
 
+    constructor(handle: DisposeDataHandle<T>) {
+        mListener = handle.mListener
+        this.mClass = handle.mClass
+        mDeliveryHandler = Handler(Looper.getMainLooper())
+    }
+
     override fun onFailure(call: Call, e: IOException) {
         mDeliveryHandler?.post{
-            mListener?.onFailure(OkHttpException(NETWORK_ERROR, e))
+            mListener?.onFailure(OkHttpException(NETWORK_ERROR, e.message))
         }
     }
 

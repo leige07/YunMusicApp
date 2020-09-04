@@ -9,13 +9,14 @@ import android.view.View
 import android.widget.ImageView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager.widget.ViewPager
-import com.test.yunmusicapp.api.TestData
 import com.test.yunmusicapp.model.CHANNEL
 import com.test.yunmusicapp.view.adapter.HomePagerAdapter
 import com.ygsoft.lib_common_ui.base.BaseActivity
 import com.ygsoft.lib_common_ui.pager_indictor.ScaleTransitionPagerTitleView
 import com.ygsoft.lib_network.CommonOkHttpClient
+import com.ygsoft.lib_network.TestData
 import com.ygsoft.lib_network.eception.OkHttpException
+import com.ygsoft.lib_network.listener.DisposeDataHandle
 import com.ygsoft.lib_network.listener.DisposeDataListener
 import com.ygsoft.lib_network.request.CommonRequest
 import com.ygsoft.lib_network.response.CommonJsonCallback
@@ -57,16 +58,28 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun initData() {
-        CommonOkHttpClient.getRequest(CommonRequest.createGetRequest("http://api.androidhive.info/volley/person_object.json"),
-           CommonJsonCallback(TestData::class.java, object : DisposeDataListener<TestData>{
-               override fun onSuccess(responseObj: TestData) {
-                   Log.e("TAG", responseObj.toString())
-               }
+//        CommonOkHttpClient.getRequest(CommonRequest.createGetRequest("http://api.androidhive.info/volley/person_object.json"),
+//           CommonJsonCallback(TestData::class.java, object : DisposeDataListener<TestData>{
+//               override fun onSuccess(responseObj: TestData) {
+//                   Log.e("TAG", responseObj.toString())
+//               }
+//
+//               override fun onFailure(exception: OkHttpException) {
+//                   Log.e("TAG", "${exception.getCode()}  ${exception.getMsg()}")
+//               }
+//           })
+//        )
 
-               override fun onFailure(exception: OkHttpException) {
-                   Log.e("TAG", "${exception.getCode()}  ${exception.getMsg()}")
-               }
-           })
+        CommonOkHttpClient.getRequest(CommonRequest.createGetRequest("http://api.androidhive.info/volley/person_object.json"),
+            DisposeDataHandle(object : DisposeDataListener<TestData>{
+                override fun onSuccess(response: TestData) {
+                    Log.e("TAG", response.toString())
+                }
+
+                override fun onFailure(exception: OkHttpException) {
+                    Log.e("TAG", "${exception.getCode()}  ${exception.getMsg()}")
+                }
+            }, TestData::class.java)
         )
     }
 
