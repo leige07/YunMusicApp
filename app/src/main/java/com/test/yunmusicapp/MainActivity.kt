@@ -4,14 +4,21 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager.widget.ViewPager
+import com.test.yunmusicapp.api.RequestCenter
+import com.test.yunmusicapp.api.TestData
 import com.test.yunmusicapp.model.CHANNEL
 import com.test.yunmusicapp.view.adapter.HomePagerAdapter
 import com.ygsoft.lib_common_ui.base.BaseActivity
 import com.ygsoft.lib_common_ui.pager_indictor.ScaleTransitionPagerTitleView
+import com.ygsoft.lib_network.CommonOkHttpClient
+import com.ygsoft.lib_network.listener.DisposeDataHandle
+import com.ygsoft.lib_network.listener.DisposeDataListener
+import com.ygsoft.lib_network.request.CommonRequest
 import net.lucode.hackware.magicindicator.MagicIndicator
 import net.lucode.hackware.magicindicator.ViewPagerHelper
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
@@ -19,6 +26,9 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNav
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView
+import okhttp3.*
+import org.json.JSONObject
+import java.io.IOException
 
 
 class MainActivity : BaseActivity(), View.OnClickListener {
@@ -89,7 +99,9 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             }
 
             override fun getTitleView(context: Context?, index: Int): IPagerTitleView? {
-                val simplePagerTitleView: SimplePagerTitleView = ScaleTransitionPagerTitleView(context)
+                val simplePagerTitleView: SimplePagerTitleView = ScaleTransitionPagerTitleView(
+                    context
+                )
                 simplePagerTitleView.text = CHANNELS[index].getKey()
                 simplePagerTitleView.textSize = 19f
                 simplePagerTitleView.typeface = Typeface.defaultFromStyle(Typeface.BOLD)

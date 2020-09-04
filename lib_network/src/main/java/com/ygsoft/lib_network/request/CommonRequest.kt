@@ -1,7 +1,6 @@
 package com.ygsoft.lib_network.request
 
 import okhttp3.*
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import java.io.File
 
 /**
@@ -41,8 +40,12 @@ class CommonRequest {
         }
 
 
-        fun createGetRequest(url: String, params: RequestParams): Request {
-            return createGetRequest(url, params)
+        fun createGetRequest(url: String, params: RequestParams?): Request {
+            return createGetRequest(url, params, null)
+        }
+
+        fun createGetRequest(url: String): Request {
+            return createGetRequest(url, null, null)
         }
 
         /**
@@ -69,7 +72,7 @@ class CommonRequest {
                 .build()
         }
 
-        private var FILE_TYPE: MediaType? = "application/octet-stream".toMediaTypeOrNull()
+        private var FILE_TYPE: MediaType? = MediaType.parse("application/octet-stream")
         /**
          * 文件上传方法
          * */
@@ -80,12 +83,12 @@ class CommonRequest {
                 for ((key, value) in params.fileParams.entries) {
                     if (value is File) {
                         requestBody.addPart(
-                            Headers.headersOf("Content-Disposition", "form-data; name=\"$key\""),
+                            Headers.of("Content-Disposition", "form-data; name=\"$key\""),
                             RequestBody.create(FILE_TYPE, value)
                         )
                     } else if (value is String) {
                         requestBody.addPart(
-                            Headers.headersOf("Content-Disposition", "form-data; name=\"$key\""),
+                            Headers.of("Content-Disposition", "form-data; name=\"$key\""),
                             RequestBody.create(null, value)
                         )
                     }

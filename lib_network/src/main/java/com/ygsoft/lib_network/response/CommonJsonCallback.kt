@@ -56,7 +56,7 @@ class CommonJsonCallback: Callback {
     }
 
     override fun onResponse(call: Call, response: Response) {
-        var result = response.body.toString()
+        var result = response.body().string()
         mDeliveryHandler?.post{
             handleResponse(result)
         }

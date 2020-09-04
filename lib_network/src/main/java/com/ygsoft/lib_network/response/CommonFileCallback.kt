@@ -83,8 +83,8 @@ class CommonFileCallback: Callback {
             checkLocalFilePath(mFilePath!!)
             file = File(mFilePath!!)
             fos = FileOutputStream(file!!)
-            inputStream = response.body!!.byteStream()
-            sumLength = response.body!!.contentLength().toDouble()
+            inputStream = response.body().byteStream()
+            sumLength = response.body().contentLength().toDouble()
             while (inputStream.read(buffer).also { length = it } != -1) {
                 fos.write(buffer, 0, length)
                 currentLength += length

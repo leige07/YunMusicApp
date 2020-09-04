@@ -6,6 +6,7 @@ import com.ygsoft.lib_network.listener.DisposeDataHandle
 import com.ygsoft.lib_network.listener.DisposeDataListener
 import com.ygsoft.lib_network.request.CommonRequest
 import com.ygsoft.lib_network.request.RequestParams
+import java.util.*
 
 /**
 @author by zhulei
@@ -31,12 +32,12 @@ class RequestCenter {
         /**
          * 登陆接口
          */
-        var LOGIN = "$ROOT_URL/module_voice/login_phone"
+        var LOGIN = "https://www.wanandroid.com/article/list/0/json"
 
 
         //根据参数发送所有post请求
         fun getRequest(url: String, params: RequestParams, listener: DisposeDataListener, clazz: Class<*>) {
-            CommonOkHttpClient.get(
+            CommonOkHttpClient.getRequest(
                 CommonRequest.createGetRequest(url, params),
                 DisposeDataHandle(listener, clazz)
             )
@@ -49,7 +50,7 @@ class RequestCenter {
             val params = RequestParams()
             params.put("mb", "18734924592")
             params.put("pwd", "999999q")
-            getRequest(LOGIN, params, listener, User::class.java)
+            getRequest(LOGIN, params, listener, Objects::class.java)
         }
     }
 

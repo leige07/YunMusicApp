@@ -1,7 +1,6 @@
 package com.test.yunmusicapp.model.user
 
 import com.test.yunmusicapp.model.BaseModel
-import okhttp3.internal.platform.Android10Platform
 
 /**
 @author by zhulei
