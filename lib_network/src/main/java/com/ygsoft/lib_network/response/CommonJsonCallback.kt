@@ -81,17 +81,12 @@ open class CommonJsonCallback<T>: Callback {
             /**
              * 协议确定后看这里如何修改
              */
-            val result = JSONObject(responseObj)
-//            if (mClass == null) {
-//                mListener!!.onSuccess(result)
-//            } else {
                 val obj: T = Gson().fromJson(responseObj, mClass)
                 if (obj != null) {
                     mListener!!.onSuccess(obj)
                 } else {
                     mListener!!.onFailure(OkHttpException(JSON_ERROR, EMPTY_MSG))
                 }
-//            }
         } catch (e: Exception) {
             mListener!!.onFailure(OkHttpException(OTHER_ERROR, e.message))
             e.printStackTrace()

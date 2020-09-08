@@ -52,14 +52,14 @@ class CommonOkHttpClient {
             return mOkHttpClient
         }
 
-        /**
-         * 通过构造好的Request,Callback去发送请求
-         */
-        fun getRequest(request: Request, handle: DisposeDataHandle<TestData>): Call {
-            val call = mOkHttpClient!!.newCall(request)
-            call.enqueue(CommonJsonCallback(handle))
-            return call
-        }
+//        /**
+//         * 通过构造好的Request,Callback去发送请求
+//         */
+//        fun getRequest(request: Request, handle: DisposeDataHandle): Call {
+//            val call = mOkHttpClient!!.newCall(request)
+//            call.enqueue(CommonJsonCallback(handle))
+//            return call
+//        }
 //
 //        fun postRequest(request: Request, handle: DisposeDataHandle): Call {
 //            val call = mOkHttpClient!!.newCall(request)
@@ -73,11 +73,11 @@ class CommonOkHttpClient {
 //            return call
 //        }
 
-        fun getRequest(request: Request, callback: Callback): Call {
-            val call = mOkHttpClient!!.newCall(request)
-            call.enqueue(callback)
-            return call
-        }
+//        fun getRequest(request: Request, callback: Callback): Call {
+//            val call = mOkHttpClient!!.newCall(request)
+//            call.enqueue(callback)
+//            return call
+//        }
     }
 
 }

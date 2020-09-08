@@ -10,9 +10,9 @@ class DisposeDataHandle<T> {
     var mClass: Class<T>? = null
     var mSource: String? = null //文件下载路径
 
-    constructor(listener: DisposeDataListener<T>?) {
-        mListener = listener
-    }
+//    constructor(listener: DisposeDataListener<T>?) {
+//        mListener = listener
+//    }
 
     constructor(listener: DisposeDataListener<T>?, clazz: Class<T>?) {
         mListener = listener

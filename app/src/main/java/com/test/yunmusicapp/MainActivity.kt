@@ -15,6 +15,7 @@ import com.ygsoft.lib_common_ui.base.BaseActivity
 import com.ygsoft.lib_common_ui.pager_indictor.ScaleTransitionPagerTitleView
 import com.ygsoft.lib_network.CommonOkHttpClient
 import com.ygsoft.lib_network.TestData
+import com.ygsoft.lib_network.YgHttpClient
 import com.ygsoft.lib_network.eception.OkHttpException
 import com.ygsoft.lib_network.listener.DisposeDataHandle
 import com.ygsoft.lib_network.listener.DisposeDataListener
@@ -70,7 +71,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 //           })
 //        )
 
-        CommonOkHttpClient.getRequest(CommonRequest.createGetRequest("http://api.androidhive.info/volley/person_object.json"),
+        YgHttpClient.getInstance().getRequest(CommonRequest.createGetRequest("http://api.androidhive.info/volley/person_object.json"),
             DisposeDataHandle(object : DisposeDataListener<TestData>{
                 override fun onSuccess(response: TestData) {
                     Log.e("TAG", response.toString())
